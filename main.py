@@ -338,11 +338,11 @@ def insertintotable():
         return df, lr_pred, forecast_set, mean, error_lr
     #**************** SENTIMENT ANALYSIS **************************
     def retrieving_tweets_polarity(symbol):
-        auth = tweepy.OAuthHandler(ct.consumer_key, ct.consumer_secret)
-        auth.set_access_token(ct.access_token, ct.access_token_secret)
+        auth = tweepy.OAuthHandler('E0pFYVai9VaOhqLiRBEC6gpGF', 'XAMh4l9XL5nwFK3MN5tAjtXA2YgDN1tw5f7L2n6dz5ib8VYlbm')
+        auth.set_access_token('3261604734-86c7DOJP98GwNeFWzvgPQKFUTyHn1ZFwlloJP3v', 'eXEmlEAdxaFjueVP03jsAWeOeNMkI7ToiDQkyvLDa6eX7')
         user = tweepy.API(auth)
         
-        tweets = tweepy.Cursor(user.search, q=str(symbol), tweet_mode='extended', lang='en',exclude_replies=True).items(ct.num_of_tweets)
+        tweets = tweepy.Cursor(user.search, q=str(symbol), tweet_mode='extended', lang='en',exclude_replies=True).items(int(300))
         
         tweet_list = [] #List of tweets alongside polarity
         global_polarity = 0 #Polarity of all tweets === Sum of polarities of individual tweets
