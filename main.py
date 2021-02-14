@@ -338,11 +338,11 @@ def insertintotable():
         return df, lr_pred, forecast_set, mean, error_lr
     #**************** SENTIMENT ANALYSIS **************************
     def retrieving_tweets_polarity(symbol):
-        auth = tweepy.OAuthHandler('E0pFYVai9VaOhqLiRBEC6gpGF', 'XAMh4l9XL5nwFK3MN5tAjtXA2YgDN1tw5f7L2n6dz5ib8VYlbm')
-        auth.set_access_token('3261604734-86c7DOJP98GwNeFWzvgPQKFUTyHn1ZFwlloJP3v', 'eXEmlEAdxaFjueVP03jsAWeOeNMkI7ToiDQkyvLDa6eX7')
+        auth = tweepy.OAuthHandler('GPcRYKZyudhH5PIPnkTUWbGRc', 'N3xYZ5GgGe1MNFGYM4HiGaZy6AcSLkEAbDjIS55D94YHUevrqn')
+        auth.set_access_token('1188684398515888128-8iuFyL1glznXtdrIqkEAkJATZ6awZH', 'FVG5K5jQIJhMCBta4n5IeAJGtzMqZ1AZpvsos3g3TgFbj')
         user = tweepy.API(auth)
         
-        tweets = tweepy.Cursor(user.search, q=str(symbol), tweet_mode='extended', lang='en',exclude_replies=True).items(int(300))
+        tweets = tweepy.Cursor(user.search, q=str(symbol), tweet_mode='extended', lang='en',exclude_replies=True).items(int(200))
         
         tweet_list = [] #List of tweets alongside polarity
         global_polarity = 0 #Polarity of all tweets === Sum of polarities of individual tweets
@@ -387,7 +387,7 @@ def insertintotable():
             tweet_list.append(Tweet(tw, polarity))
             count=count-1
         global_polarity = global_polarity / len(tweet_list)
-        neutral=ct.num_of_tweets-pos-neg
+        neutral=200-pos-neg
         if neutral<0:
         	neg=neg+neutral
         	neutral=20
@@ -434,21 +434,21 @@ def insertintotable():
                 decision="BUY"
                 print()
                 print("##############################################################################")
-                print("According to the ML Predictions and Sentiment Analysis of Tweets, a",idea,"in",quote,"stock is expected => ",decision)
+                print("According to the ML Predictions of Linear Regression and Sentiment Analysis of Tweets, a",idea,"in",quote,"stock is expected => ",decision)
             elif global_polarity < 0:
                 print()
                 idea="FALL"
                 decision="SELL"
                 print()
                 print("##############################################################################")
-                print("According to the ML Predictions and Sentiment Analysis of Tweets, a",idea,"in",quote,"stock is expected => ",decision)
+                print("According to the ML Predictions of Linear Regression and Sentiment Analysis of Tweets, a",idea,"in",quote,"stock is expected => ",decision)
         else:
             print()
             idea="FALL"
             decision="SELL"
             print()
             print("##############################################################################")
-            print("According to the ML Predictions and Sentiment Analysis of Tweets, a",idea,"in",quote,"stock is expected => ",decision)
+            print("According to the ML Predictions of Linear Regression and Sentiment Analysis of Tweets, a",idea,"in",quote,"stock is expected => ",decision)
         return idea, decision
 
 
