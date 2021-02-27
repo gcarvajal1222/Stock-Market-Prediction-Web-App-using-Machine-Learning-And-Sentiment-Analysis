@@ -58,7 +58,7 @@ def insertintotable():
             data, meta_data = ts.get_daily_adjusted(symbol='NSE:'+quote, outputsize='full')
             #Format df
             #Last 2 yrs rows => 502, in ascending order => ::-1
-            data=data.head(503).iloc[::-1]
+            data= data.head(503).iloc[::-1]
             data=data.reset_index()
             #Keep Required cols only
             df=pd.DataFrame()
